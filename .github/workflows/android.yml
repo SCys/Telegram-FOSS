@@ -55,4 +55,4 @@ jobs:
       
     - name: Build with Gradle
       run: |
-        ./gradlew assembleRelease
+        ./gradlew assembleArm64_SDK23Release
