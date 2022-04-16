@@ -30,6 +30,7 @@ jobs:
       
     - name: Build native FFmpeg and BoringSSL dependencies
       run: |
+        cd TMessagesProj/jni
         export NDK=${{ steps.setup-ndk.outputs.ndk-path }}
         export NINJA_PATH=${GITHUB_WORKSPACE}/ninja-build
         ./build_libvpx_clang.sh
