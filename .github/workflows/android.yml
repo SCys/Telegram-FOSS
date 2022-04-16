@@ -61,5 +61,5 @@ jobs:
       uses: actions/upload-artifact@v3.0.0
       with:
         name: apk
-        path: ./android/app/build/outputs/apk/release/app-release.apk
+        path: ./build/outputs/apk/release/app-release.apk
         retention-days: 90d
