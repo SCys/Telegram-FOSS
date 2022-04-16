@@ -1,0 +1,33 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: gradle
+        
+    - name: Setup Android NDK
+      # You may pin to the exact commit or the version.
+      # uses: nttld/setup-ndk@b2abc75192ee2a1ec118c8238fd86dec6d96dc43
+      uses: nttld/setup-ndk@v1.0.6
+      with:
+        ndk-version: r21e
+    
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Build with Gradle
+      run: ./gradlew build
