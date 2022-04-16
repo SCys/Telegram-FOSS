@@ -39,11 +39,11 @@ jobs:
         NINJA_PATH: ${{ github.workspace }}/ninja-build/ninja
       run: |
         cd TMessagesProj/jni
-        ./build_libvpx_clang.sh arm64
-        ./build_ffmpeg_clang.sh arm64
-        ./patch_ffmpeg.sh arm64
-        ./patch_boringssl.sh arm64
-        ./build_boringssl.sh arm64
+        ./build_libvpx_clang.sh arm arm64
+        ./build_ffmpeg_clang.sh arm arm64
+        ./patch_ffmpeg.sh arm arm64
+        ./patch_boringssl.sh arm arm64
+        ./build_boringssl.sh arm arm64
       
     - name: Create APIKey
       run: |
