@@ -77,6 +77,16 @@ android {
 
         coreLibraryDesugaringEnabled true
     }
+    
+    splits {
+        // Configures multiple APKs based on ABI.
+        abi {
+          enable true
+          reset()
+          include "arm64"
+          universalApk false
+        }
+    }
 
     buildTypes {
         debug {
