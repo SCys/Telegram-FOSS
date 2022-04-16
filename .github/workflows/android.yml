@@ -24,13 +24,8 @@ jobs:
         cache: gradle
   
     - name: Android NDK toolchain Setup
-      # You may pin to the exact commit or the version.
-      # uses: ravinderjangra/android-ndk-toolchain-setup@88bfbd8e61af597832637fb9d2f81a7cc68d1331
-      uses: ravinderjangra/android-ndk-toolchain-setup@0.2
-      with:
-        api: 21
-        arch: 'arm64'
-        install-location: ${GITHUB_WORKSPACE}/ndk-toolchain
+      id: setup-ndk
+      
         
     - name: Setup NINJA
       uses: seanmiddleditch/gha-setup-ninja@v3
@@ -40,11 +35,11 @@ jobs:
         cd TMessagesProj/jni
         export NDK=${GITHUB_WORKSPACE}/ndk-toolchain
         export NINJA_PATH=${GITHUB_WORKSPACE}/ninja-build
-        ./build_libvpx_clang.sh
-        ./build_ffmpeg_clang.sh
-        ./patch_ffmpeg.sh
-        ./patch_boringssl.sh
-        ./build_boringssl.sh
+        ./build_libvpx_clang.sh arm64
+        ./build_ffmpeg_clang.sh arm64
+        ./patch_ffmpeg.sh arm64
+        ./patch_boringssl.sh arm64
+        ./build_boringssl.sh arm64
         
     - name: Create APIKey
       run: |
