@@ -26,22 +26,25 @@ jobs:
   
     - name: Android NDK toolchain Setup
       id: setup-ndk
-      
+      uses: nttld/setup-ndk@v1.0.6
+      with:
+        ndk-version: r21e
         
     - name: Setup NINJA
       uses: seanmiddleditch/gha-setup-ninja@v3
       
     - name: Build native FFmpeg and BoringSSL dependencies
+      env:
+        NDK: ${{ steps.setup-ndk.outputs.ndk-path }}
+        NINJA_PATH: ${GITHUB_WORKSPACE}/ninja-build
       run: |
         cd TMessagesProj/jni
-        export NDK=${GITHUB_WORKSPACE}/ndk-toolchain
-        export NINJA_PATH=${GITHUB_WORKSPACE}/ninja-build
         ./build_libvpx_clang.sh arm64
         ./build_ffmpeg_clang.sh arm64
         ./patch_ffmpeg.sh arm64
         ./patch_boringssl.sh arm64
         ./build_boringssl.sh arm64
-        
+      
     - name: Create APIKey
       run: |
         echo APP_ID=${{ secrets.API_ID }} > API_KEYS
