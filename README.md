@@ -19,6 +19,7 @@ setup GitHub actions secrets `APP_KEYSTORE_PASSWORD` and `API_KEY_ALIAS`
 # Origin README.md
 
 [![Discussions](https://img.shields.io/badge/Offtopics-Telegram-blue.svg)](https://t.me/tfossofftop)
+
 [![Donate](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/Telegram-FOSS/) or <img src="https://en.bitcoin.it/w/images/en/c/cb/BC_Logotype.png" alt="Bitcoin" height="25px" /> `1P8kNcifVAkBWtWmjKY4RvVLy5QwruE2LQ`
 
 # Telegram-FOSS
