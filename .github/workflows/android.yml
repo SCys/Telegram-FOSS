@@ -49,17 +49,21 @@ jobs:
       run: |
         echo APP_ID=${{ secrets.API_ID }} > API_KEYS
         echo APP_HASH=${{ secrets.API_HASH }} >> API_KEYS
-    
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-      
+
     - name: Build with Gradle
+      env:
+        APP_KEYSTORE: ${{ secrets.APP_KEYSTORE }}
+        APP_KEYSTORE_PASSWORD: ${{ secrets.APP_KEYSTORE_PASSWORD }}
+        API_KEY_ALIAS: ${{ secrets.API_KEY_ALIAS }}
+        APP_KEY_PASSWORD: ${{ secrets.APP_KEYSTORE_PASSWORD }}
       run: |
-        ./gradlew assembleArm64_SDK23Release --build-cache --max-workers 4 --parallel --continue
+        echo $APP_KEYSTORE | base64 -di > app.keystore
+        chmod +x gradlew
+        ./gradlew assembleArm64_SDK23Release --build-cache --max-workers 6 --parallel --continue
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.0.0
       with:
         name: apk
-        path: ./TMessagesProj/build/outputs/apk/arm64_SDK23/release/
+        path: ./TMessagesProj/build/outputs/apk/
         retention-days: 90d

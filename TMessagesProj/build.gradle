@@ -77,14 +77,13 @@ android {
 
         coreLibraryDesugaringEnabled true
     }
-    
-    splits {
-        // Configures multiple APKs based on ABI.
-        abi {
-          enable true
-          reset()
-          include "arm64"
-          universalApk false
+
+    signingConfigs {
+        release {
+            storeFile = file("app.keystore")
+            storePassword System.getenv("APP_KEYSTORE_PASSWORD")
+            keyAlias System.getenv("APP_KEY_ALIAS")
+            keyPassword System.getenv("APP_KEY_PASSWORD")
         }
     }
 
@@ -99,35 +98,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             ndk.debugSymbolLevel = 'FULL'
         }
-
-        /*debugAsan {
-            debuggable true
-            jniDebuggable true
-            signingConfig signingConfigs.debug
-            applicationIdSuffix ".beta"
-            minifyEnabled true
-            multiDexEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
-            packagingOptions {
-                doNotStrip "**.so"
-            }
-
-            sourceSets {
-                main {
-                    jniLibs {
-                        srcDir {
-                            'jniLibs'
-                        }
-                    }
-                    resources {
-                        srcDir {
-                            'jniRes'
-                        }
-                    }
-                }
-            }
-        }*/
 
         HA {
             debuggable false
@@ -157,16 +127,13 @@ android {
             multiDexEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             ndk.debugSymbolLevel = 'FULL'
+            signingConfig signingConfigs.release
         }
     }
 
     sourceSets.debug {
         manifest.srcFile 'config/debug/AndroidManifest.xml'
     }
-
-    /*sourceSets.debugAsan {
-        manifest.srcFile 'config/debug/AndroidManifest.xml'
-    }*/
 
     sourceSets.HA {
         manifest.srcFile 'config/debug/AndroidManifest.xml'
