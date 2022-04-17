@@ -3,6 +3,7 @@
 - remove all x86/x86_64 build config
 - add GitHub Actions yaml [workflow](https://github.com/SCys/Telegram-FOSS/blob/master/.github/workflows/android.yml)
 - add signed apk config
+- only build with arm64 sdk23
 
 ### Create your certificate
 
@@ -15,9 +16,7 @@ openssl base64 < scys.keystore | tr -d '\n' | tee # encode as base64 string
 
 setup GitHub actions secrets `APP_KEYSTORE_PASSWORD` and `API_KEY_ALIAS`
 
-# Origin
-
----
+# Origin README.md
 
 [![Discussions](https://img.shields.io/badge/Offtopics-Telegram-blue.svg)](https://t.me/tfossofftop)
 [![Donate](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/Telegram-FOSS/) or <img src="https://en.bitcoin.it/w/images/en/c/cb/BC_Logotype.png" alt="Bitcoin" height="25px" /> `1P8kNcifVAkBWtWmjKY4RvVLy5QwruE2LQ`
