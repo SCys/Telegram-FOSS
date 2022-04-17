@@ -1,6 +1,25 @@
-[![Releases](https://img.shields.io/github/release/Telegram-FOSS-Team/Telegram-FOSS.svg)](https://github.com/Telegram-FOSS-Team/Telegram-FOSS/releases/latest)
-[![Discussions](https://img.shields.io/badge/Offtopics-Telegram-blue.svg)](https://t.me/tfossofftop)
+# My Changes
 
+- remove all x86/x86_64 build config
+- add GitHub Actions yaml [workflow](https://github.com/SCys/Telegram-FOSS/blob/master/.github/workflows/android.yml)
+- add signed apk config
+
+### Create your certificate
+
+```bash
+keytool -genkey -alias keyAliasName -keyalg RSA -keysize 2048 -validity 36500 -keystore app.keystore
+# setup your password and info
+openssl base64 < scys.keystore | tr -d '\n' | tee # encode as base64 string
+# copy txt string to github secret with NAME `APP_KEYSTORE`
+```
+
+setup GitHub actions secrets `APP_KEYSTORE_PASSWORD` and `API_KEY_ALIAS`
+
+# Origin
+
+---
+
+[![Discussions](https://img.shields.io/badge/Offtopics-Telegram-blue.svg)](https://t.me/tfossofftop)
 [![Donate](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/Telegram-FOSS/) or <img src="https://en.bitcoin.it/w/images/en/c/cb/BC_Logotype.png" alt="Bitcoin" height="25px" /> `1P8kNcifVAkBWtWmjKY4RvVLy5QwruE2LQ`
 
 # Telegram-FOSS
