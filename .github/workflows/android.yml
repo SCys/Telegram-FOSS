@@ -54,7 +54,7 @@ jobs:
       env:
         APP_KEYSTORE: ${{ secrets.APP_KEYSTORE }}
         APP_KEYSTORE_PASSWORD: ${{ secrets.APP_KEYSTORE_PASSWORD }}
-        API_KEY_ALIAS: ${{ secrets.API_KEY_ALIAS }}
+        APP_KEY_ALIAS: ${{ secrets.APP_KEY_ALIAS }}
         APP_KEY_PASSWORD: ${{ secrets.APP_KEYSTORE_PASSWORD }}
       run: |
         echo $APP_KEYSTORE | base64 -di > /tmp/app.keystore
